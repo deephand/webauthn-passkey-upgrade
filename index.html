@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username First Flow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="username-container" class="container">
+        <h3>Username first flow demo</h3>
+        <p>Enter an arbitrary email to continue. There's no real backend.</p>
+        <form class="form-class">
+            <input type="email" id="username" placeholder="EMAIL ADDRESS" required autocomplete="email webauthn">
+            <button type="submit">Continue</button>
+        </form>
+    </div>
+
+    <div id="success-container" class="container hidden">
+        <h1>Success!</h1>
+        <p>You have successfully logged in.</p>
+        <p><strong>Username:</strong> <span id="success-username"></span></p>
+        <p><strong>Password:</strong> <span id="success-password"></span></p>
+        <div id="message"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
