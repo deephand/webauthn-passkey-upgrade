@@ -10,15 +10,16 @@ let username = '';
 function showPasswordContainer() {
     const passwordContainerHTML = `
         <div id="password-container" class="container">
-            <h1>Login to demo website</h1>
-            <p>Enter an arbitrary password to continue. There's no real backend.</p>
+            <h3>Username first flow demo</h3>
+            <p>Now, enter an arbitrary password to continue. There's no real backend.</p>
             <form class="form-class">
-                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" id="password" placeholder="PASSWORD" required>
                 <button type="submit">Sign in</button>
             </form>
         </div>
     `;
-    document.body.insertAdjacentHTML('beforeend', passwordContainerHTML);
+    const footer = document.querySelector('.main-footer');
+    footer.insertAdjacentHTML('beforebegin', passwordContainerHTML);
     
     const passwordForm = document.getElementsByClassName('form-class')[0];
     const passwordContainer = document.getElementById('password-container');
