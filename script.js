@@ -4,16 +4,40 @@ const successContainer = document.getElementById('success-container');
 const successUsername = document.getElementById('success-username');
 const successPassword = document.getElementById('success-password');
 const messageDiv = document.getElementById('message');
+const usernameOrEmailInput = document.getElementById('will-be-updated');
+const urlParams = new URLSearchParams(window.location.search);
+const isUsername = urlParams.has('username');
+const noUsernameInPasswordForm = urlParams.has('noUsernameInPasswordForm');
+
+console.log('Customization options:');
+console.log('  - "username" URL parameter: ' + (isUsername ? 'present. Using username field.' : 'not present. Using email field.'));
+console.log('  - "noUsernameInPasswordForm" URL parameter: ' + (noUsernameInPasswordForm ? 'present. Username field will not be present on the password screen.' : 'not present. Username will be carried over to the password screen.'));
+
+if (isUsername) {
+    usernameOrEmailInput.type = 'text';
+    usernameOrEmailInput.placeholder = 'USERNAME';
+    usernameOrEmailInput.id = 'username';
+    usernameOrEmailInput.name = 'username';
+    usernameOrEmailInput.autocomplete = "username webauthn";
+} else {
+    usernameOrEmailInput.type = 'email';
+    usernameOrEmailInput.placeholder = 'EMAIL ADDRESS';
+    usernameOrEmailInput.id = 'email';
+    usernameOrEmailInput.name = 'email';
+    usernameOrEmailInput.autocomplete = "email webauthn";
+}
 
 let username = '';
 
 function showPasswordContainer() {
     const urlParams = new URLSearchParams(window.location.search);
-    const deleteUsername = urlParams.has('deleteUsername');
+    const noUsernameInPasswordForm = urlParams.has('noUsernameInPasswordForm');
 
     let usernameField = '';
-    if (!deleteUsername) {
-        usernameField = `<input type="hidden" input id="username" name="username" value="${username}" autocomplete="username" class="hidden">`;
+    if (!noUsernameInPasswordForm) {
+        const autocompleteType = isUsername ? 'username' : 'email';
+        const fieldName = isUsername ? 'username' : 'email';
+        usernameField = `<input type="hidden" id="${fieldName}" name="${fieldName}" value="${username}" autocomplete="${autocompleteType}" class="hidden">`;
     }
 
     const passwordContainerHTML = `
@@ -46,7 +70,7 @@ function showPasswordContainer() {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    username = document.getElementById('username').value;
+    username = usernameOrEmailInput.value;
     usernameContainer.remove();
     // Simulate network request
     setTimeout(() => {
