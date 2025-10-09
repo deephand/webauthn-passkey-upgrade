@@ -10,8 +10,8 @@ const isUsername = urlParams.has('username');
 const noUsernameInPasswordForm = urlParams.has('noUsernameInPasswordForm');
 
 console.log('Customization options:');
-console.log('  - "username" URL parameter: ' + (isUsername ? 'present. Using username field.' : 'not present. Using email field.'));
-console.log('  - "noUsernameInPasswordForm" URL parameter: ' + (noUsernameInPasswordForm ? 'present. Username field will not be present on the password screen.' : 'not present. Username will be carried over to the password screen.'));
+console.log('   - "username" URL parameter: ' + (isUsername ? 'present. Using username field.' : 'not present. Using email field.'));
+console.log('   - "noUsernameInPasswordForm" URL parameter: ' + (noUsernameInPasswordForm ? 'present. Username field will not be present on the password screen.' : 'not present. Username will be carried over to the password screen.'));
 
 if (isUsername) {
     usernameOrEmailInput.type = 'text';
