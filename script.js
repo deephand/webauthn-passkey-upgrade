@@ -37,7 +37,8 @@ function showPasswordContainer() {
     if (!noUsernameInPasswordForm) {
         const autocompleteType = isUsername ? 'username' : 'email';
         const fieldName = isUsername ? 'username' : 'email';
-        usernameField = `<input type="hidden" id="${fieldName}" name="${fieldName}" value="${username}" autocomplete="${autocompleteType}" class="hidden">`;
+        const fieldType = isUsername ? 'text' : 'email';
+        usernameField = `<input type="${fieldType}" id="${fieldName}" name="${fieldName}" value="${username}" autocomplete="${autocompleteType}" class="hidden">`;
     }
 
     const passwordContainerHTML = `
