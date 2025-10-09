@@ -13,7 +13,7 @@ function showPasswordContainer() {
 
     let usernameField = '';
     if (!deleteUsername) {
-        usernameField = `<type="hidden" input id="username" name="username" value="${username}" autocomplete="username" class="hidden">`;
+        usernameField = `<input type="hidden" input id="username" name="username" value="${username}" autocomplete="username" class="hidden">`;
     }
 
     const passwordContainerHTML = `
