@@ -8,11 +8,20 @@ const messageDiv = document.getElementById('message');
 let username = '';
 
 function showPasswordContainer() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const deleteUsername = urlParams.has('deleteUsername');
+
+    let usernameField = '';
+    if (!deleteUsername) {
+        usernameField = `<input id="email" value="${username}" autocomplete="email" class="hidden">`;
+    }
+
     const passwordContainerHTML = `
         <div id="password-container" class="container">
             <h3>Username first flow demo</h3>
             <p>Now, enter an arbitrary password to continue. There's no real backend.</p>
             <form class="form-class">
+                ${usernameField}
                 <input type="password" id="password" placeholder="PASSWORD" required>
                 <button type="submit">Sign in</button>
             </form>
@@ -86,7 +95,7 @@ let conditionalCreate = async () => {
     }
     showMessage("Checking for existing passkeys...");
     let timeoutID = window.setTimeout(() => {
-        showMessage(
+        showError(
         "Looks like it's not working. Make sure your browser can access your passkeys. Try creating one on webauthn.io first to check. Also make sure there is a matching password in your password manager with the same username you used to log in."
         );
     }, 10000);
