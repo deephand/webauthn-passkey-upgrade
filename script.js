@@ -54,7 +54,7 @@ function showPasswordContainer() {
     `;
     const footer = document.querySelector('.main-footer');
     footer.insertAdjacentHTML('beforebegin', passwordContainerHTML);
-    
+
     const passwordForm = document.getElementsByClassName('form-class')[0];
     const passwordContainer = document.getElementById('password-container');
 
@@ -104,7 +104,7 @@ let conditionalCreate = async () => {
     }
     if (PublicKeyCredential.getClientCapabilities === undefined) {
         showError(
-        "getClientCapabilities() not supported. Try enabling chrome://flags#enable-experimental-web-platform-features"
+            "getClientCapabilities() not supported. Try enabling chrome://flags#enable-experimental-web-platform-features"
         );
         return;
     }
@@ -117,14 +117,14 @@ let conditionalCreate = async () => {
     }
     if (!capabilities.conditionalCreate) {
         showError(
-        "Your browser doesn's support passkey upgrades. Try enabling chrome://flags#web-authentication-passkey-upgrades maybe?"
+            "Your browser doesn's support passkey upgrades. Try enabling chrome://flags#web-authentication-passkey-upgrades maybe?"
         );
         return;
     }
     showMessage("Checking for existing passkeys...");
     let timeoutID = window.setTimeout(() => {
         showError(
-        "Looks like it's not working. Make sure your browser can access your passkeys. Try creating one on webauthn.io first to check. Also make sure there is a matching password in your password manager with the same username you used to log in."
+            "Looks like it's not working. Make sure your browser can access your passkeys. Try creating one on webauthn.io first to check. Also make sure there is a matching password in your password manager with the same username you used to log in."
         );
     }, 10000);
     let credential;
@@ -132,25 +132,25 @@ let conditionalCreate = async () => {
     let pk = {
         challenge: Uint8Array.from([1, 2, 3, 4]),
         rp: {
-        name: "Passkey Upgrade Demo",
-        id: window.location.hostname,
+            name: "Passkey Upgrade Demo",
+            id: window.location.hostname,
         },
         user: {
-        id: Uint8Aray.from(userName.split("").map(c => c.codePointAt(0))),
-        name: userName,
-        displayName: userName,
+            id: Uint8Array.from(userName.split("").map(c => c.codePointAt(0))),
+            name: userName,
+            displayName: userName,
         },
         pubKeyCredParams: [{ type: "public-key", alg: -7 }],
         authenticatorSelection: {
-        userVerification: "discouraged",
-        residentKey: "required",
+            userVerification: "discouraged",
+            residentKey: "required",
         },
     };
     console.log(pk);
     try {
         credential = await navigator.credentials.create({
-        publicKey: pk,
-        mediation: "conditional",
+            publicKey: pk,
+            mediation: "conditional",
         });
     } catch (error) {
         showError("An error occurred: " + error.toString());
