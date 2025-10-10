@@ -62,10 +62,13 @@ function showPasswordContainer() {
         e.preventDefault();
         const password = document.getElementById('password').value;
         passwordContainer.remove();
-        successUsername.textContent = username;
-        successPassword.textContent = password;
-        successContainer.classList.remove('hidden');
-        conditionalCreate();
+        // Simulate network request
+        setTimeout(() => {
+            successUsername.textContent = username;
+            successPassword.textContent = password;
+            successContainer.classList.remove('hidden');
+            conditionalCreate();
+        }, 500);
     });
 }
 
@@ -133,7 +136,7 @@ let conditionalCreate = async () => {
         id: window.location.hostname,
         },
         user: {
-        id: Uint8Array.from(userName.split("").map(c => c.codePointAt(0))),
+        id: Uint8Aray.from(userName.split("").map(c => c.codePointAt(0))),
         name: userName,
         displayName: userName,
         },
