@@ -40,7 +40,7 @@ function showPasswordContainer() {
 
     const passwordContainerHTML = `
         <div id="password-container" class="container">
-            <h3>Username first flow demo</h3>
+            <h3>WebAuthn Passkey Upgrade Demo</h3>
             <p>Now, enter an arbitrary password to continue. There's no real backend.</p>
             <form class="form-class">
                 ${usernameField}

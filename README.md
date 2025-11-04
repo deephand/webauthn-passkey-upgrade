@@ -1,4 +1,4 @@
-# Username-First Login Flow with Automated Passkey Upgrade
+# WebAuthn Passkey Upgrade
 
 This project demonstrates a username-first login flow with an automated passkey upgrade feature.
 
